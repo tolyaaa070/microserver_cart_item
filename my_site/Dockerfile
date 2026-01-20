@@ -11,3 +11,8 @@ RUN pip install --upgrade pip && \
 COPY nginx/nginx.conf /etc/nginx/conf.d/
 
 COPY . /app/
+
+
+EXPOSE 8003
+
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8003", "my_site.wsgi:application"]

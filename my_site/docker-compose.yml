@@ -5,7 +5,7 @@ services:
   cart_app:
     build: .
     command: >
-      bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate && gunicorn -b 0.0.0.0:8003 cart_app.wsgi:application"
+      bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate && gunicorn -b 0.0.0.0:8003 my_site.wsgi:application"
     volumes:
       - .:/app
       - static_volume:/app/static
@@ -16,7 +16,7 @@ services:
       - db
 
   db:
-    image: postgres:latest
+    image: postgres:15
     restart: always
     environment:
       POSTGRES_DB: postgres
